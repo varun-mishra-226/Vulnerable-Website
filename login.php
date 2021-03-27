@@ -19,6 +19,7 @@
           <li class="nav-item">
             <a class="nav-link mx-5" href="login.php">Log In</a>
           </li>
+          
         </ul>
 
   </nav><br>
@@ -45,7 +46,7 @@
       $row = mysqli_fetch_assoc($res1);
       if ($res2==1) {
           session_start();
-          $_SESSION["userEmail"] = $e;
+          $_SESSION["userEmail"] = $row['Email'];
           // Change the file for preventing the attack
           header("Location: afterSignIn.php");
       } else {

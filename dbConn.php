@@ -4,7 +4,7 @@ server with default setting (user 'root' with no password) */
   $servername = "localhost";
   $username = "root";
   $password = "";
-  $dbname = "test-site";
+  $dbname = "test_site";
 
 /* Attempt to connect to MySQL database */
 $conn = mysqli_connect($servername, $username, $password, $dbname);

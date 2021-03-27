@@ -32,6 +32,9 @@ session_start();
           <a class="nav-link mr-5" href="#"><i class="material-icons" style="font-size: 50px;">shopping_cart</i><span id="numOfItems" style="position: absolute; color: white; left: 937px; top: 21px;"></span></a>
         </li>
         <li class="nav-item mt-3">
+          <a class="nav-link float-right" href="profile.php"><button class="btn btn-sm btn-outline-primary">View Profile</button></a>
+        </li>
+        <li class="nav-item mt-3">
           <a class="nav-link float-right" href="logout.php"><button class="btn btn-sm btn-outline-primary">Logout</button></a>
         </li>
       </ul>
