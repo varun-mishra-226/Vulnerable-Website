@@ -1,12 +1,16 @@
 <?php
 session_start();
 ?> 
+
 <!DOCTYPE html>  
  <html>  
    <head>
      <style>
         li{
           list-style-type: none;
+        }
+        .makec{
+            text-align:center;
         }
      </style>
      <title>Auctions-home</title>  
@@ -37,7 +41,7 @@ session_start();
     </nav>
         
    <div class="container" style="position: relative; margin-top: 130px; margin-left: 0px; width: 900px;">
-   <form action="viewProfile.php" method="GET" class="container justify-content-center" style="width: 400px;">
+   <form action="" method="GET" class="container justify-content-center" style="width: 400px;">
     <div class="form-group justify-content-center text-center">
       <legend class="mb-5">View Profile</legend>
       <input class="form-control" type="text" placeholder="Email ID" value=<?php echo $_SESSION["userEmail"];?> name="email" readonly><br><br>
@@ -45,7 +49,37 @@ session_start();
       <input type="submit" value="View" class="btn btn-primary btn-block"><br><br>      
     </div>
   </form>
-  </div>
+ 
+   <div class="justify-content-center text-center">
+  <?php
+
+    require_once "dbConn.php";
   
+    if($_SERVER["REQUEST_METHOD"]=="GET"){
+      $e=$_SESSION["userEmail"];
+      $p=$_GET["pswd"];
+      
+      $sql = "SELECT * FROM registration WHERE Email='$e' and Password='$p'";
+      $res1 = mysqli_query($conn, $sql);
+      $res2 = mysqli_affected_rows($conn);
+      $row = mysqli_fetch_assoc($res1);
+      if ($res2==1) {
+        echo "<div>
+        <p> Email ID : ".$row['Email']."</p>
+        </div>";
+        echo "<div>
+        <p> Phone Number : ".$row['MobNo']."</p>
+        </div>";
+        echo "<br>";
+      } else {
+          echo '<div class="alert alert-warning">
+                <strong>Warning</strong> Your Password is incorrect !!
+              </div>';
+      }
+    }
+    mysqli_close($conn);
+  ?>
+    </div>
+
 </body>
 </html>
