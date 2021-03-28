@@ -62,15 +62,18 @@ session_start();
       $sql = "SELECT * FROM registration WHERE Email='$e' and Password='$p'";
       $res1 = mysqli_query($conn, $sql);
       $res2 = mysqli_affected_rows($conn);
-      $row = mysqli_fetch_assoc($res1);
-      if ($res2==1) {
-        echo "<div>
-        <p> Email ID : ".$row['Email']."</p>
-        </div>";
-        echo "<div>
-        <p> Phone Number : ".$row['MobNo']."</p>
-        </div>";
-        echo "<br>";
+
+      if ($res2>0) {
+        while( $row = mysqli_fetch_assoc($res1))
+        {
+          echo "<div>
+          <p> Email ID : ".$row['Email']."</p>
+          </div>";
+          echo "<div>
+          <p> Phone Number : ".$row['MobNo']."</p>
+          </div>";
+          echo "<br>";
+        }
       } else {
           echo '<div class="alert alert-warning">
                 <strong>Warning</strong> Your Password is incorrect !!

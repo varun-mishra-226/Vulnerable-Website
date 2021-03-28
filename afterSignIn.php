@@ -41,6 +41,11 @@ session_start();
     </nav>
         
    <div class="container" style="position: relative; margin-top: 130px; margin-left: 0px; width: 900px;">
+      <form action="search.php" method="POST">
+        <input type="search" name="cat" id="cat" placeholder="Search Items">
+        <input type="submit" value="Search" class="btn btn-primary"><br><br>     
+      </form>
+      
       <table class="table table-bordered">  
         <tr>  
           <th class="text-center h5" colspan="2">Items</th>  
@@ -60,12 +65,12 @@ session_start();
                   <td>
                   <ul>
                     <li class="d-inline" style="font-size: 30px;">'.$row['Item_Name'].'</li>
-                    <li class="float-right d-inline display-4 px-3"> $'.$row['updatedBid'].'</li>
+                    <li class="float-right d-inline display-4 px-3"> $'.$row['Cost'].'</li>
                     <li class="my-3"><strong>Owner : </strong>'.$row['Owner_Name'].'</li>
                     <li class="float-right">
                       <div class="input-group">
                         <span class="input-group-btn mr-3">
-                          <button class="btn-sm btn-primary px-3" onclick="jsfunction(this,\''.$row['Item_Name'].'\')" type="submit" value="'.$row['updatedBid'].'">Add Item</button>
+                          <button class="btn-sm btn-primary px-3" onclick="jsfunction(this,\''.$row['Item_Name'].'\')" type="submit" value="'.$row['Cost'].'">Add Item</button>
                         </span>
                       </div>
                     </li>
@@ -74,7 +79,6 @@ session_start();
                 </tr>
              ';  
           }
-          mysqli_close($conn);
         ?>  
         </table>
   </div>
@@ -90,6 +94,7 @@ session_start();
      </div>
      
   <!-- <script src='forge-sha256.min.js'></script>   -->
+
   
   <script>
       

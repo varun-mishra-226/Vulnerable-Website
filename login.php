@@ -40,7 +40,7 @@
       $e=$_POST["email"];
       $p=$_POST["pswd"];
       
-      $sql = "SELECT * FROM registration WHERE Email='$e' and Password='$p'";
+      $sql = "SELECT * FROM user WHERE Email='$e' and Password='$p'";
       $res1 = mysqli_query($conn, $sql);
       $res2 = mysqli_affected_rows($conn);
       $row = mysqli_fetch_assoc($res1);

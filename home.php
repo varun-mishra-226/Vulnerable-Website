@@ -36,7 +36,7 @@
     require_once "dbConn.php";
     
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-      $sql = "INSERT INTO registration (Email, Password, MobNo) VALUES ('".$_POST["email"]."', '".$_POST["pswd"]."', '".$_POST["mob"]."')";
+      $sql = "INSERT INTO user (Email, Password, MobNo) VALUES ('".$_POST["email"]."', '".$_POST["pswd"]."', '".$_POST["mob"]."')";
       
       if (mysqli_query($conn, $sql)) {
         session_start();
