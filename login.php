@@ -28,7 +28,7 @@
       <legend class="mb-5">Log In</legend>
       <input class="form-control" type="text" placeholder="Email ID" name="email"><br><br>
       <input class="form-control" type="password" placeholder="Password" name="pswd"><br><br>
-      <input type="submit" value="Log In" class="btn btn-primary"><br><br>      
+      <input type="submit" value="Log In" class="btn btn-primary btn-block"><br><br>      
     </div>
   </form>
   
@@ -39,14 +39,15 @@
     if($_SERVER["REQUEST_METHOD"]=="POST"){
       $e=$_POST["email"];
       $p=$_POST["pswd"];
-      
+      echo $p;
       $sql = "SELECT * FROM user WHERE Email='$e' and Password='$p'";
       $res1 = mysqli_query($conn, $sql);
       $res2 = mysqli_affected_rows($conn);
       $row = mysqli_fetch_assoc($res1);
-      if ($res2==1) {
+      if ($res2>0) {
           session_start();
           $_SESSION["userEmail"] = $row['Email'];
+
           // Change the file for preventing the attack
           header("Location: afterSignIn.php");
       } else {

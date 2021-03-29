@@ -8,7 +8,7 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-sm bg-light justify-content-center">
+  <nav style="background-color:rgb(196, 204, 219);" class="navbar navbar-expand-sm justify-content-center">
 
       <!-- Links -->
         <ul class="navbar-nav">
@@ -25,11 +25,11 @@
   </nav><br>
   <form action="" method="post" class="container justify-content-center" style="width: 400px;">
     <div class="form-group justify-content-center text-center">
-      <legend class="mb-5">Sign Up</legend>
+      <h2 class="mb-5">Sign Up</h2>
       <input class="form-control" type="email" placeholder="Email ID" name="email"><br><br>
       <input class="form-control" type="password" placeholder="Password" name="pswd"><br><br>
       <input class="form-control" type="text" placeholder="Mobile Number" name="mob"><br><br>
-      <input type="submit" value="Submit" class="btn btn-primary"><br><br>      
+      <input type="submit" value="Submit" class="btn btn-primary btn-block"><br><br>      
     </div>
   </form>
   <?php

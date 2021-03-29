@@ -46,9 +46,10 @@ session_start();
    <div class="container" style="position: relative; margin-top: 130px; margin-left: 0px; width: 900px;">
    <form action="" method="GET" class="container justify-content-center" style="width: 400px;">
     <div class="form-group justify-content-center text-center">
-      <legend class="mb-5">View Profile</legend>
-      <input class="form-control" type="text" placeholder="Email ID" value=<?php echo $_SESSION["userEmail"];?> name="email"><br><br>
-      <input class="form-control" type="password" placeholder="Password" name="pswd"><br><br>
+      <legend class="mb-5">Edit Profile</legend>
+      <input class="form-control" type="text" placeholder="Email ID" value=<?php echo $_SESSION["userEmail"];?> name="email" readonly><br><br>
+      <input class="form-control" type="text" placeholder="Change Phone Number" name="phno"><br><br>
+      <input class="form-control" type="password" placeholder="Change Password" name="pswd"><br><br>
       <input type="submit" value="View" class="btn btn-primary btn-block"><br><br>      
     </div>
   </form>
@@ -61,26 +62,22 @@ session_start();
     if($_SERVER["REQUEST_METHOD"]=="GET"){
       $e=$_GET["email"];
       $p=$_GET["pswd"];
+      $m=$_GET["phno";]
       
-      $sql = "SELECT * FROM user WHERE Email='$e' and Password='$p'";
+      $sql = "UPDATE user SET MobNo='$m' and Password='$p' WHERE Email='$e'";
       $res1 = mysqli_query($conn, $sql);
       $res2 = mysqli_affected_rows($conn);
      // echo $sql;
       echo "<hr>";
-      if ($res2>0) {
-        while( $row = mysqli_fetch_assoc($res1))
+      if ($row = mysqli_fetch_assoc($res1))
         {
-          echo "<div>
-          <p> Email ID : ".$row['Email']."</p>
-          </div>";
-          echo "<div>
-          <p> Phone Number : ".$row['MobNo']."</p>
-          </div>";
-          echo "<hr>";
+            echo '<div class="alert alert-success">
+            <strong>Success</strong> Profile Updated !!
+          </div>';
         }
       } else {
           echo '<div class="alert alert-warning">
-                <strong>Warning</strong> Your Password is incorrect !!
+                <strong>Warning</strong> Couldnot update your profile !!
               </div>';
       }
     }

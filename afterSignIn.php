@@ -9,6 +9,11 @@ session_start();
         li{
           list-style-type: none;
         }
+        .search input[type=text]{
+        width:790px;
+        height:40px;
+        border-radius:5px;
+    }
      </style>
      <title>Auctions-home</title>  
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -41,9 +46,11 @@ session_start();
     </nav>
         
    <div class="container" style="position: relative; margin-top: 130px; margin-left: 0px; width: 900px;">
-      <form action="search.php" method="POST">
-        <input type="search" name="cat" id="cat" placeholder="Search Items">
-        <input type="submit" value="Search" class="btn btn-primary"><br><br>     
+      <form action="search.php" method="GET">
+      <div class="search">
+        <input type="text" name="cat" id="cat" placeholder="Search Items">
+        <input type="submit" value="Search" class="btn btn-primary"><br><br> 
+        </div>     
       </form>
       
       <table class="table table-bordered">  
