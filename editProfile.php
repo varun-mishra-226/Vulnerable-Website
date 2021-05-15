@@ -44,7 +44,7 @@ session_start();
     </nav>
         
    <div class="container" style="position: relative; margin-top: 130px; margin-left: 0px; width: 900px;">
-   <form action="" method="GET" class="container justify-content-center" style="width: 400px;">
+   <form action="" method="POST" class="container justify-content-center" style="width: 400px;">
     <div class="form-group justify-content-center text-center">
       <legend class="mb-5">Edit Profile</legend>
       <input class="form-control" type="text" placeholder="Email ID" value=<?php echo $_SESSION["userEmail"];?> name="email" readonly><br><br>
@@ -59,23 +59,26 @@ session_start();
 
     require_once "dbConn.php";
   
-    if($_SERVER["REQUEST_METHOD"]=="GET"){
-      $e=$_GET["email"];
-      $p=$_GET["pswd"];
-      $m=$_GET["phno";]
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+      $e=$_POST["email"];
+      $p=$_POST["pswd"];
+      $m=$_POST["phno"];
       
-      $sql = "UPDATE user SET MobNo='$m' and Password='$p' WHERE Email='$e'";
-      $res1 = mysqli_query($conn, $sql);
-      $res2 = mysqli_affected_rows($conn);
-     // echo $sql;
+      $sql = "UPDATE user SET MobNo='$m', Password='$p' WHERE Email='$e'";
+    $res1 = mysqli_affected_rows($conn);
+     echo $sql;
+    //  echo $res1;
+    if($res1==true)
+        echo "fff";
       echo "<hr>";
-      if ($row = mysqli_fetch_assoc($res1))
+      if (mysqli_query($conn, $sql))
         {
             echo '<div class="alert alert-success">
             <strong>Success</strong> Profile Updated !!
           </div>';
         }
-      } else {
+      else {
+          echo mysqli_error($conn);
           echo '<div class="alert alert-warning">
                 <strong>Warning</strong> Couldnot update your profile !!
               </div>';

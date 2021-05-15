@@ -40,6 +40,9 @@ session_start();
           <a class="nav-link float-right" href="profile.php"><button class="btn btn-sm btn-outline-primary">View Profile</button></a>
         </li>
         <li class="nav-item mt-3">
+          <a class="nav-link float-right" href="editProfile.php"><button class="btn btn-sm btn-outline-primary">Edit Profile</button></a>
+        </li>
+        <li class="nav-item mt-3">
           <a class="nav-link float-right" href="logout.php"><button class="btn btn-sm btn-outline-primary">Logout</button></a>
         </li>
       </ul>
@@ -95,10 +98,41 @@ session_start();
           Item Name : <input id="itmName" type="text" name="itemName" class="float-right px-2"><br><br>
           Amount : <input id="itmCost" type="text" name="cost" class="float-right px-2"><br><br><br>
 <!--          <input id="hash" type="text" name="hash" style="display: none;">-->
-          <input name="checkout" type="submit" value="Checkout" class="float-right btn btn-primary">
+          <input name="checkout" type="submit" value="Checkout" class="btn btn-block btn-primary">
         </form>
        <div class=""></div>
      </div>
+
+     <div class="col-3 ml-5 p-3" style="position: absolute; left: 900px; top: 430px; border: 1px solid black;">
+        <div class="py-4 h4 text-center">Product Reviews</div>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+          Name : <input id="itmName" type="text" name="userName" class="float-right px-2"><br><br>
+          Review : <input id="itmCost" type="text" name="review" class="float-right px-2"><br><br><br>
+          <input name="addrev" type="submit" value="Add Review" class="btn btn-block btn-primary">
+        </form>
+      <?php
+        if(isset($_POST['addrev']))
+        {
+          $sql = "INSERT INTO reviews (name, message) VALUES ('".$_POST["userName"]."', '".$_POST["review"]."')";
+      
+          if (mysqli_query($conn, $sql)) {
+            
+          } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+          }
+        }
+      ?>
+      <?php
+        $query = "SELECT * FROM reviews";  
+        $result = mysqli_query($conn, $query);  
+        while($row = mysqli_fetch_assoc($result))
+        {
+          echo "<p><b>".$row['name']."</b>"." - ".$row['message']."</p>";
+        }
+      ?>
+       <div class=""></div>
+     </div>
+     
      
   <!-- <script src='forge-sha256.min.js'></script>   -->
 

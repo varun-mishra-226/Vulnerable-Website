@@ -62,7 +62,7 @@ session_start();
           include "dbConn.php";
 
             $cat=$_GET["cat"];
-           
+           echo $cat;
             $sql = "SELECT * FROM items WHERE Category='$cat'";
             $res1 = mysqli_query($conn, $sql);
             // $res2 = mysqli_affected_rows($conn);
